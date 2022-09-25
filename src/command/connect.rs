@@ -23,6 +23,7 @@ pub async fn connect(ctx: Context<'_>) -> CommandResult {
     let _ = manager
         .join(guild_id, vc_id)
         .await
+        .1
         .context("VCに参加できませんでした")?;
     ctx.data().text_ch.save(ctx.channel_id());
     ctx.send(|b| {
