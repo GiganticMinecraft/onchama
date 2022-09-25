@@ -35,6 +35,7 @@ fn setup_logger(is_verbose: bool) -> Result<(), fern::InitError> {
         .level_for(package_name, crate_log_level)
         .level_for("surf", log::LevelFilter::Off)
         .level_for("serenity", log::LevelFilter::Off)
+        .level_for("songbird", log::LevelFilter::Off)
         .level_for("tracing::span", log::LevelFilter::Off);
 
     let stdout_config = fern::Dispatch::new()
