@@ -20,13 +20,16 @@ pub async fn connect(ctx: Context<'_>) -> CommandResult {
     let manager = songbird::get(&ctx.discord())
         .await
         .context("Songbirdが初期化されていません")?;
-    let _ = manager.join(guild_id, vc_id).await;
+    let _ = manager
+        .join(guild_id, vc_id)
+        .await
+        .context("VCに参加できませんでした")?;
     ctx.data().text_ch.save(ctx.channel_id());
     ctx.send(|b| {
         b.embed(|e| {
             let vc = guild.channels.get(&vc_id).unwrap().clone();
             e.success_color()
-                .title(format!("{}に接続しました", vc.guild().unwrap().name))
+                .title(format!("{}に参加しました", vc.guild().unwrap().name))
         })
     })
     .await?;
