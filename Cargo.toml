@@ -17,3 +17,4 @@ serde = { version = "1.0", features = ["derive"] }
 itertools = "0.10"
 derive-new = "0.5"
 argh = "0.1"
+songbird = "0.3"
