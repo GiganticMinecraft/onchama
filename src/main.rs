@@ -63,7 +63,7 @@ async fn main() {
     if arg.is_verbose {
         debug!("Logging level is debug")
     };
-    let commands = vec![command::connect()];
+    let commands = vec![command::connect(), command::disconnect()];
 
     let framework = poise::Framework::builder()
         .options(poise::FrameworkOptions {
