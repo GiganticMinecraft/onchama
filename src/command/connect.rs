@@ -17,7 +17,7 @@ pub async fn connect(ctx: Context<'_>) -> CommandResult {
     //     .and_then(|voice_state| voice_state.channel_id)
     //     .context("VCに参加してください")?;
     let vc_id = ChannelId::from(872720546742296667);
-    let manager = songbird::get(&ctx.discord())
+    let manager = songbird::get(ctx.discord())
         .await
         .context("Songbirdが初期化されていません")?;
     manager

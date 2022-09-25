@@ -10,7 +10,7 @@ use anyhow::{ensure, Context as _};
 pub async fn disconnect(ctx: Context<'_>) -> CommandResult {
     let guild = ctx.guild().context("Guildがありません")?;
     let guild_id = guild.id;
-    let manager = songbird::get(&ctx.discord())
+    let manager = songbird::get(ctx.discord())
         .await
         .context("Songbirdが初期化されていません")?;
 
