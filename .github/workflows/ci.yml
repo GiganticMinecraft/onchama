@@ -18,12 +18,14 @@ on:
       - "!.github/workflows/ci.yml"
 
 jobs:
-  lint-and-test:
-    name: Lint and Test
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: Swatinem/rust-cache@v1
+        with:
+          key: "lint-v1"
       - name: Setup Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
@@ -38,6 +40,19 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: clippy
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: Swatinem/rust-cache@v1
+        with:
+          key: "test-v1"
+      - name: Setup Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          components: rustfmt, clippy
       - name: Cargo test
         uses: actions-rs/cargo@v1
         with:
