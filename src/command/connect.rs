@@ -20,7 +20,7 @@ pub async fn connect(ctx: Context<'_>) -> CommandResult {
     let manager = songbird::get(&ctx.discord())
         .await
         .context("Songbirdが初期化されていません")?;
-    let _ = manager
+    manager
         .join(guild_id, vc_id)
         .await
         .1
