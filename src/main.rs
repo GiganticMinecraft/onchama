@@ -1,4 +1,7 @@
-use onchama::{command, Data, Env};
+use onchama::{
+    command,
+    shared::{Data, Env},
+};
 
 use argh::FromArgs;
 use itertools::Itertools;
