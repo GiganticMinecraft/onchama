@@ -11,6 +11,7 @@ use poise::{
     serenity_prelude::{Context, GatewayIntents, GuildId},
     Event, FrameworkContext, FrameworkError,
 };
+use songbird::SerenityInit;
 
 #[derive(FromArgs)]
 /// CLI arg
@@ -153,7 +154,8 @@ async fn main() {
         })
         .token(Env::new().discord_token)
         .intents(GatewayIntents::non_privileged() | GatewayIntents::MESSAGE_CONTENT)
-        .user_data_setup(move |_, _, _| Box::pin(async move { Ok(Data::new()) }));
+        .user_data_setup(move |_, _, _| Box::pin(async move { Ok(Data::new()) }))
+        .client_settings(|b| b.register_songbird());
 
     framework.run().await.unwrap();
 }
