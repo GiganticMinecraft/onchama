@@ -8,6 +8,14 @@ on:
       - "renovate.json"
       - ".github/workflows/**"
       - "!.github/workflows/ci.yml"
+  pull_request:
+    paths-ignore:
+      - ".env.example"
+      - "LICENSE"
+      - "README.md"
+      - "renovate.json"
+      - ".github/workflows/**"
+      - "!.github/workflows/ci.yml"
 
 jobs:
   lint-and-test:
